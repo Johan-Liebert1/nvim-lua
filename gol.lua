@@ -49,6 +49,7 @@ local function getNeighbors(row, col)
     return n
 end
 
+---@diagnostic disable-next-line: unused-local, unused-function
 local function printGrid()
     for i = 1, ROWS do
         for j = 1, COLS do
@@ -141,11 +142,7 @@ local function writeTextToBuffer(bufferId)
     --   • {strict_indexing}  Whether out-of-bounds should be an error.
     --   • {replacement}      Array of lines to use as replacement
 
-    local last = 0
-
     for i, row in pairs(Grid) do
-        last = i
-
         local str = ""
 
         for _, thing in pairs(row) do
@@ -158,8 +155,6 @@ local function writeTextToBuffer(bufferId)
 
         vim.api.nvim_buf_set_lines(bufferId, i, i + 1, false, { str })
     end
-
-    vim.api.nvim_buf_set_lines(bufferId, last + 1, last + 1, false, { "" })
 end
 
 function Start()
